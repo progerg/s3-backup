@@ -3,5 +3,5 @@ ENV TZ "Europe/Moscow"
 RUN apk update
 RUN apk add postgresql-client mysql-client tzdata
 RUN pip install APScheduler==3.10.4 boto3==1.34.33
-ADD src .
+ADD . .
 CMD ["python3", "main.py"]

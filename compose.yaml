@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14.5
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      PGDATA: /data/postgres
+    networks:
+      - backup
+    volumes:
+      - ./pgdata:/data/postgres
+
+  backup:
+    restart: on-failure
+    networks:
+      - backup
+    depends_on:
+      - db
+    build:
+      context: src/
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+
+networks:
+  backup:

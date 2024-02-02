@@ -22,3 +22,4 @@ FILES = first/file/path;second/file/path;first/folder
 BACKUP_INTERVAL = (in seconds)
 ```
 
+The example of compose file you can see under 
