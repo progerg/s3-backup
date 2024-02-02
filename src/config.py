@@ -10,9 +10,10 @@ DB_PORT = getenv("DB_PORT")
 DB_NAME = getenv("DB_NAME")
 DB_LOGIN = getenv("DB_LOGIN")
 DB_PASSWORD = getenv("DB_PASSWORD")
+DB_COLLECTION = getenv("DB_COLLECTION")
 DB_TYPE = getenv("DB_TYPE", "postgres")
 
-FILES = getenv("FILES")
+FILES = getenv("FILES", "")
 
 BACKUP_INTERVAL = int(getenv("BACKUP_INTERVAL"))
 

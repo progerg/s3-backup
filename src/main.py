@@ -5,6 +5,7 @@ import logging
 
 from config import *
 from backup import Backup
+from db.mongo import MongoDBDump
 
 from db.postgres import PostgresDump
 from db.mysql import MySQLDump
@@ -21,6 +22,8 @@ def backup():
             db_dump = PostgresDump(DB_HOST, DB_PORT, DB_LOGIN, DB_PASSWORD, DB_NAME)
         elif DB_TYPE == "mysql":
             db_dump = MySQLDump(DB_HOST, DB_PORT, DB_LOGIN, DB_PASSWORD, DB_NAME)
+        elif DB_TYPE == "mongo":
+            db_dump = MongoDBDump(DB_HOST, DB_PORT, DB_LOGIN, DB_PASSWORD, DB_NAME)
     else:
         logging.warning("No DB credentials provided")
 

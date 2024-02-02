@@ -13,12 +13,24 @@ services:
     volumes:
       - ./pgdata:/data/postgres
 
+  mongodb:
+    image: mongodb/mongodb-community-server:7.0.4-ubi8
+    networks:
+      - backup
+    ports:
+      - "27018:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=1234
+      - MONGO_INITDB_DATABASE=hello
+
   backup:
     restart: on-failure
     networks:
       - backup
     depends_on:
       - db
+      - mongodb
     build:
       context: src/
       dockerfile: Dockerfile

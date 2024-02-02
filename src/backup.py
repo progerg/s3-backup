@@ -32,7 +32,7 @@ class Backup:
 
         database_dump_file = None
         if self.db_dump:
-            database_dump_file = datetime.datetime.now().strftime("%m_%d_%Y_%H_%M_%S.sql")
+            database_dump_file = datetime.datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
             self.db_dump.dump(database_dump_file)
             self.archiver.add_file(database_dump_file)
 

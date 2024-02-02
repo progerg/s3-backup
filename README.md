@@ -16,7 +16,8 @@ DB_PORT =
 DB_NAME = 
 DB_LOGIN = 
 DB_PASSWORD = 
-DB_TYPE = (mysql or postgres)
+DB_COLLECTION = (only for mongo)
+DB_TYPE = (mysql or postgres or mongo)
 
 FILES = first/file/path;second/file/path;first/folder
 BACKUP_INTERVAL = (in seconds)
