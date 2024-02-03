@@ -3,6 +3,8 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import datetime
 import logging
 
+from apscheduler.triggers.cron import CronTrigger
+
 from config import *
 from backup import Backup
 from db.mongo import MongoDBDump
@@ -50,7 +52,16 @@ def backup():
 
 if __name__ == "__main__":
     scheduler = BackgroundScheduler(daemon=True)
-    scheduler.add_job(lambda: backup(), 'interval', seconds=BACKUP_INTERVAL)
+    if BACKUP_INTERVAL:
+        scheduler.add_job(lambda: backup(), 'interval', seconds=BACKUP_INTERVAL)
+    elif SPECIFIC_TIME:
+        hour, minute = SPECIFIC_TIME.split(":")
+        trigger = CronTrigger(
+            year="*", month="*", day="*", hour=int(hour), minute=int(minute)
+        )
+        scheduler.add_job(lambda: backup(), trigger)
+    else:
+        exit(0)
     scheduler.start()
 
     import time

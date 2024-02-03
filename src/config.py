@@ -15,7 +15,8 @@ DB_TYPE = getenv("DB_TYPE", "postgres")
 
 FILES = getenv("FILES", "")
 
-BACKUP_INTERVAL = int(getenv("BACKUP_INTERVAL"))
+BACKUP_INTERVAL = int(getenv("BACKUP_INTERVAL", 0))
+SPECIFIC_TIME = int(getenv("SPECIFIC_TIME", ""))
 
 AWS_SECRET_KEY = getenv("AWS_SECRET_KEY")
 AWS_ACCESS_KEY = getenv("AWS_ACCESS_KEY")
