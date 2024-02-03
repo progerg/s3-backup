@@ -37,5 +37,16 @@ services:
     env_file:
       - .env
 
+  backuphub:
+    image: progerg/backup-s3:0.1
+    restart: on-failure
+    networks:
+      - backup
+    depends_on:
+      - db
+      - mongodb
+    env_file:
+      - .env
+
 networks:
   backup:

@@ -1,4 +1,5 @@
 import datetime
+import logging
 import os
 import shutil
 
@@ -16,10 +17,14 @@ class Backup:
         self.archiver = archiver
 
     @staticmethod
-    def remove_files(files: list[str]):
+    def remove_paths(files: list[str]):
         for path in files:
             if path and os.path.isfile(path):
+                logging.info(f"Removing file {path}")
                 os.remove(path)
+            elif path and os.path.isdir(path):
+                logging.info(f"Removing folder {path}")
+                shutil.rmtree(path)
 
     def perform_backup(self):
         """

@@ -15,6 +15,9 @@ from archiver.zip_archiver import CustomZipArchiver
 from cloud import CloudS3Uploader
 
 
+logging.basicConfig(level=logging.INFO)
+
+
 def backup():
     db_dump = None
     if DB_HOST and DB_PORT and DB_NAME and DB_LOGIN and DB_PASSWORD and DB_TYPE:
@@ -32,10 +35,17 @@ def backup():
 
     zip_file_path, db_dump_path = backup_dump.perform_backup()
 
+    logging.info("Zip file path: " + zip_file_path)
+    logging.info("DB dump path: " + db_dump_path)
+
     storage = CloudS3Uploader(SERVICE_NAME, BUCKET, AWS_ACCESS_KEY, AWS_SECRET_KEY, ENDPOINT_URL)
     storage.upload_file(zip_file_path)
 
-    backup_dump.remove_files([zip_file_path, db_dump_path])
+    logging.info("Uploaded to cloud")
+
+    backup_dump.remove_paths([zip_file_path, db_dump_path])
+
+    logging.info("Removed temp files and folders")
 
 
 if __name__ == "__main__":
