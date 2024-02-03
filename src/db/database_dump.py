@@ -6,6 +6,6 @@ class DatabaseDump:
         self.password = password
         self.db_name = db_name
 
-    def dump(self, output: str):
+    def dump(self, output: str) -> str:
         raise NotImplementedError("dump must be implemented in derived class")
 

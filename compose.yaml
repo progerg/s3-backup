@@ -42,6 +42,8 @@ services:
     restart: on-failure
     networks:
       - backup
+    volumes:
+      - "./src:/home/backup/src"
     depends_on:
       - db
       - mongodb

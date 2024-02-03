@@ -20,3 +20,4 @@ class MongoDBDump(DatabaseDump):
         if self.db_collection:
             command += f" --collection={self.db_collection}"
         subprocess.run(command, shell=True, check=True)
+        return output
