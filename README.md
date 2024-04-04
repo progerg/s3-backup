@@ -22,6 +22,10 @@ DB_TYPE = (mysql or postgres or mongo)
 FILES = first/file/path;second/file/path;first/folder
 BACKUP_INTERVAL = (in seconds, backup every X secod from the moment of run)
 SPECIFIC_TIME = 03:11 (if it is given the backup interval will be ignored)
+
+BACKUP_NAME_FOR_TG = (name of the backup for telegram message)
+TG_BOT_TOKEN = (bot token from telegram for messages)
+TG_CHAT_ID = (chat id for messages in TG)
 ```
 
 The example of compose file you can see in `compose.yaml` file

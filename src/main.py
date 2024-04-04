@@ -15,7 +15,7 @@ from db.mysql import MySQLDump
 from archiver.zip_archiver import CustomZipArchiver
 
 from cloud import CloudS3Uploader
-
+from telegram import Telegram
 
 logging.basicConfig(level=logging.INFO)
 
@@ -48,6 +48,8 @@ def backup():
     backup_dump.remove_paths([zip_file_path, db_dump_path])
 
     logging.info("Removed temp files and folders")
+
+    Telegram.send_message(f"{BACKUP_NAME_FOR_TG} backup successfuly created")
 
 
 if __name__ == "__main__":
